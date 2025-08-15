@@ -45,16 +45,6 @@ const Home: React.FC = () => {
       className="min-h-screen flex items-center justify-center pt-16 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-4xl mx-auto text-center">
-        <motion.div
-          variants={itemVariants}
-          className="mb-8"
-        >
-          <img
-            src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
-            alt="Profile"
-            className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-orange-600 shadow-lg"
-          />
-        </motion.div>
 
         <motion.h1
           variants={itemVariants}
