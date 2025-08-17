@@ -87,7 +87,7 @@ const Home: React.FC = () => {
             Get In Touch
           </Link>
           <a
-            href="https://drive.google.com/file/d/1_s8rovHdvckwCfH21Z3Cj2dNRjAVQeSM/view?usp=drive_link"
+            href="https://drive.google.com/file/d/15fSyN8QWQf7VBcm84ERdb5qd2Ifr6j6f/view?usp=sharing"
             download
             className="flex items-center space-x-2 text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-orange-500 transition-colors"
           >
