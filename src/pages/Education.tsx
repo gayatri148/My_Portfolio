@@ -18,6 +18,16 @@ const Education: React.FC = () => {
         "Database Management Systems",
         "Computer Networks"
       ]
+    },
+    {
+      degree: "Higher Secondary School",
+      institution: "Narayana Junior College",
+      location: "Hyderabad, Telanagna",
+      period: "2020 - 2022",
+      gpa: "985/1000",
+      courses: [
+        "Mathematics","Physics","Chemistry"
+      ]
     }
   ];
 
@@ -183,10 +193,10 @@ const Education: React.FC = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
-                Currently studying: Advanced React Patterns
+                Currently studying: Advanced React + API Integrations
               </span>
               <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
-                Next: Kubernetes Administration
+                Next: DevOps Essentials (Docker & CI/CD)
               </span>
             </div>
           </div>
