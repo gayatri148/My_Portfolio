@@ -57,12 +57,12 @@ const Contact: React.FC = () => {
       value: "gayatri.gurugubelli05@gmail.com",
       link: "mailto:gayatri.gurugubelli05@gmail.com"
     },
-    {
+   /* {
       icon: Phone,
       title: "Phone",
       value: "6360387395",
-      link: "tel:636038795"
-    },
+      link: null
+    },*/
     {
       icon: MapPin,
       title: "Location",
