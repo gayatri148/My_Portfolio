@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #f4ecdd;
+  --paper-card: #fbf6ec;
+  --kraft: #caa874;
+  --ink: #1c3a5b;
+  --blue: #3f72ab;
+  --blue-deep: #2c5685;
+  --slatey: #6b6357;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* Warm paper fibre texture over everything */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Hero canvas - cream paper + faint graph-paper grid + warm glow */
+.bg-mesh {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(63, 114, 171, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(63, 114, 171, 0.06) 1px, transparent 1px),
+    radial-gradient(at 78% 28%, rgba(202, 168, 116, 0.16) 0px, transparent 55%);
+  background-size: 30px 30px, 30px 30px, 100% 100%;
+}
+
+.grid-overlay {
+  background-image: radial-gradient(rgba(63, 114, 171, 0.08) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Paper card - replaces the old glass look everywhere */
+.glass {
+  background: var(--paper-card);
+  border: 1px solid rgba(28, 58, 91, 0.09);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02), 0 16px 30px -18px rgba(28, 58, 91, 0.38);
+  backdrop-filter: none;
+}
+
+.paper2 {
+  background: #f1e7d4;
+}
+
+/* Washi-tape strip (place over card corners) */
+.tape {
+  position: absolute;
+  height: 28px;
+  width: 92px;
+  background: linear-gradient(
+    180deg,
+    rgba(231, 220, 196, 0.75),
+    rgba(214, 198, 165, 0.65)
+  );
+  box-shadow: 0 4px 10px -6px rgba(28, 58, 91, 0.4);
+  border-left: 1px dashed rgba(28, 58, 91, 0.12);
+  border-right: 1px dashed rgba(28, 58, 91, 0.12);
+}
+.tape::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 70%
+  );
+}
+
+/* Lined notebook paper */
+.note-lines {
+  background-image: repeating-linear-gradient(
+    rgba(63, 114, 171, 0.18) 0px,
+    rgba(63, 114, 171, 0.18) 1px,
+    transparent 1px,
+    transparent 22px
+  );
+}
+
+/* Gradient text - navy → blue */
+.text-gradient {
+  background: linear-gradient(115deg, var(--ink) 0%, var(--blue-deep) 45%, var(--blue) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* White gel-pen doodles (for use on dark bands only) */
+.gelpen {
+  color: #ffffff;
+  filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.22)) drop-shadow(0 5px 12px rgba(0, 0, 0, 0.22));
+}
+.gelpen-soft {
+  color: #ffffff;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.18)) drop-shadow(0 3px 8px rgba(0, 0, 0, 0.16));
+}
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 50s linear infinite; }
+
+/* Custom scrollbar - warm */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--kraft), var(--blue-deep));
+  border-radius: 999px;
+  border: 2px solid var(--paper);
+}
+
+.kicker { letter-spacing: 0.28em; text-transform: uppercase; }
+
+.link-underline { position: relative; }
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, var(--ink), var(--blue));
+  transition: width 0.32s ease;
+}
+.link-underline:hover::after { width: 100%; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+.fluid-h1 { font-size: clamp(2.5rem, 9vw, 5rem); line-height: 1.04; }
+.fluid-h2 { font-size: clamp(1.75rem, 5vw, 2.75rem); line-height: 1.1; }
+.fluid-role { font-size: clamp(1.5rem, 6vw, 3rem); line-height: 1.1; }
+
+img, svg, video, canvas { max-width: 100%; height: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (pointer: fine) {
+  .custom-cursor-active, .custom-cursor-active * { cursor: none; }
+}
+
+/* Light gradient text - for quotes on dark bands */
+.text-gradient-light {
+  background: linear-gradient(115deg, #f0e6d2 0%, #ffffff 55%, #a9c8ef 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
