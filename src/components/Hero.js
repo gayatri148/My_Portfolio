@@ -8,13 +8,12 @@ import {
   PaperCard,
   Tape,
   Paperclip,
-  Pushpin,
   LinedPaper,
   PaperPlane,
   Leaf,
   BrushUnderline,
 } from "./ui/Paper";
-import { Sparkle, Star, Spiral, CurlyArrow, Heart } from "./ui/Doodles";
+import { Sparkle, Star, Spiral, CurlyArrow } from "./ui/Doodles";
 
 function RotatingRole() {
   const [i, setI] = useState(0);
@@ -40,12 +39,48 @@ function RotatingRole() {
 
 function Chip({ className = "", rotate = 0, tapeClass, children }) {
   return (
-    <div className="absolute" style={{ transform: `rotate(${rotate}deg)` }}>
+    <div className="relative" style={{ transform: `rotate(${rotate}deg)` }}>
       <div className={`relative ${className}`}>
         <Tape className={`-top-3 left-1/2 h-5 w-14 -translate-x-1/2 ${tapeClass || ""}`} />
         <div className="bg-paper-card px-3 py-1.5 font-hand text-lg font-bold text-ink shadow-paper">
           {children}
         </div>
+      </div>
+    </div>
+  );
+}
+
+// Hand-drawn "where I've lived" route map, ending at the current city.
+function RouteMap() {
+  const stops = ["Srikakulam", "Hyderabad", "Vijayawada"];
+  return (
+    <div
+      className="relative w-52 bg-paper-card px-4 py-3 shadow-paper"
+      style={{ transform: "rotate(-3deg)" }}
+    >
+      <Tape className="-top-3 left-8 h-5 w-16 -rotate-3" />
+      <p className="mb-2 flex items-center gap-1 font-hand text-base font-bold text-teal">
+        <MapPin size={15} /> my journey
+      </p>
+      <div className="relative">
+        <span className="absolute left-[4px] top-2 bottom-3 border-l-2 border-dashed border-azure/50" />
+        <ul className="space-y-2.5">
+          {stops.map((c) => (
+            <li key={c} className="relative flex items-center gap-3">
+              <span className="z-10 h-2.5 w-2.5 rounded-full border-2 border-azure bg-paper-card" />
+              <span className="font-hand text-sm text-slatey">{c}</span>
+            </li>
+          ))}
+          <li className="relative flex items-center gap-3">
+            <span className="relative z-10 flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal opacity-70" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-teal" />
+            </span>
+            <span className="font-hand text-sm font-bold text-ink">
+              Bengaluru <span className="text-teal">· you are here</span>
+            </span>
+          </li>
+        </ul>
       </div>
     </div>
   );
@@ -76,7 +111,6 @@ export default function Hero() {
       {/* ambient hero doodles */}
       <PaperPlane className="left-[36%] top-[18%] hidden w-24 text-ink/70 sm:block" />
       <Star className="left-[8%] top-[24%] hidden w-7 text-azure/60 sm:block" />
-      <Sparkle className="right-[44%] top-[58%] hidden w-6 text-ink/45 lg:block" />
       <Leaf className="-bottom-2 right-3 hidden w-24 md:block lg:w-28" />
 
       <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-10 px-5 pb-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
@@ -84,11 +118,13 @@ export default function Hero() {
         <div>
           {/* compact photo - mobile only */}
           <div className="mx-auto mb-8 w-44 lg:hidden">
-            <PaperCard tone="paper" rotate={-3} className="p-3">
+            <PaperCard tone="paper" rotate={-3} className="p-2.5">
               <Paperclip className="-top-5 right-6 z-10 w-7 text-slatey" />
-              <div className="grid aspect-square place-items-center rounded-sm bg-gradient-to-br from-azure to-teal">
-                <span className="font-display text-3xl font-bold text-white">GG</span>
-              </div>
+              <img
+                src={profile.photo}
+                alt={profile.name}
+                className="aspect-square w-full rounded-sm object-cover"
+              />
               <p className="mt-2 text-center font-hand text-base text-slatey">Gayatri</p>
             </PaperCard>
           </div>
@@ -174,45 +210,46 @@ export default function Hero() {
         </div>
 
         {/* ── Right collage (desktop) ── */}
-        <div className="relative hidden h-[480px] lg:block">
-          {/* kraft backing pieces */}
-          <PaperCard tone="kraft" rotate={-7} className="absolute right-10 top-16 h-72 w-64" />
-          <PaperCard tone="kraft" rotate={6} className="absolute right-24 top-28 h-60 w-52" />
-
-          {/* polaroid photo card */}
-          <PaperCard tone="paper" rotate={-3} className="absolute right-16 top-10 w-64 p-4">
-            <Paperclip className="-top-6 right-10 z-10 w-8 text-slatey" />
-            <div className="grid aspect-[4/5] place-items-center rounded-sm bg-gradient-to-br from-azure to-teal">
-              <span className="font-display text-5xl font-bold text-white">GG</span>
-            </div>
-            <p className="mt-3 text-center font-hand text-lg text-slatey">
-              add your photo →
-              <br />
-              <code className="text-xs text-teal">/public/profile.jpg</code>
-            </p>
-          </PaperCard>
-
-          {/* taped labels */}
-          <div className="absolute left-1 top-2">
-            <Chip rotate={-8}>9.69 CGPA</Chip>
+        <div className="relative hidden h-[540px] lg:block">
+          {/* kraft backing behind the photo */}
+          <div className="absolute right-8 top-10">
+            <PaperCard tone="kraft" rotate={5} className="h-72 w-60" />
           </div>
-          <div className="absolute -right-2 top-[46%]">
+
+          {/* 9.69 CGPA chip - above the photo */}
+          <div className="absolute right-24 top-0 z-30">
+            <Chip rotate={-6}>9.69 CGPA</Chip>
+          </div>
+
+          {/* polaroid photo card - upper area, right under the 9.69 */}
+          <div className="absolute right-12 top-8 z-20">
+            <PaperCard tone="paper" rotate={-3} className="w-60 p-3">
+              <Paperclip className="-top-6 right-10 z-10 w-8 text-slatey" />
+              <img
+                src={profile.photo}
+                alt={profile.name}
+                className="aspect-[4/5] w-full rounded-sm object-cover"
+              />
+              <p className="mt-2 text-center font-hand text-lg text-slatey">
+                Gayatri
+              </p>
+            </PaperCard>
+          </div>
+
+          {/* AI · Full Stack chip */}
+          <div className="absolute -right-2 top-[46%] z-30">
             <Chip rotate={6}>AI · Full Stack</Chip>
           </div>
-          <div className="absolute bottom-6 left-6">
-            <div className="relative" style={{ transform: "rotate(-4deg)" }}>
-              <Pushpin className="-top-3 left-2 z-10 w-4 text-teal" />
-              <div className="bg-paper-card px-3 py-1.5 font-hand text-lg font-bold text-ink shadow-paper">
-                <MapPin size={13} className="mb-0.5 mr-1 inline text-teal" />
-                Bengaluru
-              </div>
-            </div>
+
+          {/* journey / route map - lower area (replaces the Bengaluru pin) */}
+          <div className="absolute bottom-0 left-0 z-20">
+            <RouteMap />
           </div>
 
           {/* sparkles around */}
-          <Sparkle className="right-4 top-2 w-8 text-azure/70 animate-floaty" />
-          <Star className="left-8 top-24 w-6 text-ink/50" />
-          <CurlyArrow className="bottom-2 right-8 w-16 rotate-[120deg] text-azure/55" />
+          <Sparkle className="right-2 top-2 w-8 animate-floaty text-azure/70" />
+          <Star className="left-6 top-[42%] w-6 text-ink/50" />
+          <CurlyArrow className="bottom-8 right-4 w-16 rotate-[120deg] text-azure/55" />
         </div>
       </div>
 

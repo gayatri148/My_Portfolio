@@ -12,9 +12,12 @@ import {
   Loader2,
   AlertCircle,
 } from "lucide-react";
-import SectionHeader from "./ui/SectionHeader";
-import Reveal from "./ui/Reveal";
 import { profile } from "@/data/content";
+
+// Public Supabase config (safe in the browser: the anon key is protected by
+// Row Level Security). Set these in Render -> Environment before building.
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -28,13 +31,36 @@ export default function Contact() {
     setStatus("loading");
     setError("");
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Something went wrong.");
+      if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+        throw new Error(
+          "The contact form isn't configured yet. Please email me directly."
+        );
+      }
+      const res = await fetch(
+        `${SUPABASE_URL.replace(/\/+$/, "")}/rest/v1/portfolio`,
+        {
+          method: "POST",
+          headers: {
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            "Content-Type": "application/json",
+            Prefer: "return=minimal",
+          },
+          body: JSON.stringify([
+            {
+              name: form.name.trim(),
+              email: form.email.trim(),
+              message: form.message.trim(),
+            },
+          ]),
+        }
+      );
+      if (!res.ok) {
+        const detail = await res.text().catch(() => "");
+        throw new Error(
+          detail || "Couldn't send your message. Please email me directly."
+        );
+      }
       setStatus("success");
       setForm({ name: "", email: "", message: "" });
     } catch (err) {
@@ -142,7 +168,7 @@ export default function Contact() {
                     <textarea
                       value={form.message}
                       onChange={update("message")}
-                      placeholder="Tell me about it…"
+                      placeholder="Tell me about it..."
                       required
                       rows={4}
                       className="w-full resize-none rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-azure"
@@ -162,7 +188,7 @@ export default function Contact() {
                   >
                     {status === "loading" ? (
                       <>
-                        <Loader2 size={16} className="animate-spin" /> Sending…
+                        <Loader2 size={16} className="animate-spin" /> Sending...
                       </>
                     ) : (
                       <>

@@ -22,7 +22,7 @@ export const profile = {
     portfolio: "#",
   },
   // PLACEHOLDER - drop a square photo in /public/profile.jpg (see README)
-  photo: "/profile.jpg",
+  photo: "/profile.png",
   resume:
     "https://drive.google.com/file/d/15fSyN8QWQf7VBcm84ERdb5qd2Ifr6j6f/view?usp=sharing",
 };
