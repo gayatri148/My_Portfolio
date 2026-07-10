@@ -21,7 +21,7 @@ export function PaperDefs() {
 /* ── Torn-edge paper card ─────────────────────────────────────────── */
 export function PaperCard({ children, className = "", tone = "paper", rotate = 0, filter = "paper-torn", style }) {
   const fill =
-    tone === "kraft" ? "#e7d2a8" : tone === "deep" ? "#f1e7d4" : "#fbf6ec";
+    tone === "kraft" ? "var(--fill-kraft)" : tone === "deep" ? "var(--fill-deep)" : "var(--fill-paper)";
   return (
     <div
       className={`relative ${className}`}

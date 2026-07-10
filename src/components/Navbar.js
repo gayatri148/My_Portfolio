@@ -75,7 +75,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <a
             href="#contact"
-            className="hidden items-center gap-1.5 rounded-xl bg-ink px-4 py-2 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-teal sm:flex"
+            className="hidden items-center gap-1.5 rounded-xl bg-panel px-4 py-2 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-teal sm:flex"
           >
             Let&apos;s talk <ArrowUpRight size={15} />
           </a>
@@ -110,7 +110,7 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={() => setOpen(false)}
-              className="mt-1 block rounded-xl bg-ink px-4 py-3 text-center text-sm font-semibold text-white"
+              className="mt-1 block rounded-xl bg-panel px-4 py-3 text-center text-sm font-semibold text-white"
             >
               Let&apos;s talk
             </a>

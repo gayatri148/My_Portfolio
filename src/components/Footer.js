@@ -72,7 +72,7 @@ function FooterIcon({ href, label, children }) {
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="grid h-10 w-10 place-items-center rounded-xl border border-azure/50 bg-white/60 text-ink transition-all hover:-translate-y-0.5 hover:border-teal hover:text-teal"
+      className="grid h-10 w-10 place-items-center rounded-xl border border-azure/50 bg-paper-card text-ink transition-all hover:-translate-y-0.5 hover:border-teal hover:text-teal"
     >
       {children}
     </a>

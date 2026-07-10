@@ -43,7 +43,7 @@ export default function Awards() {
           {/* Certifications + extras */}
           <div className="space-y-6">
             <Reveal delay={0.1}>
-              <div className="rounded-3xl bg-ink p-7 text-white">
+              <div className="rounded-3xl bg-panel p-7 text-white">
                 <div className="mb-4 flex items-center gap-2">
                   <BadgeCheck size={20} className="text-azure" />
                   <h3 className="font-display text-lg font-semibold">

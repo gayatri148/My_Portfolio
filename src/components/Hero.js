@@ -101,7 +101,7 @@ export default function Hero() {
       >
         <path
           d="M0 0 H1440 V42 C1320 56,1230 30,1100 46 C980 60,880 32,740 46 C620 58,520 30,380 44 C250 57,130 34,0 50 Z"
-          fill="#fbf6ec"
+          fill="var(--fill-paper)"
         />
       </svg>
 
@@ -178,7 +178,7 @@ export default function Hero() {
           >
             <a
               href="#projects"
-              className="group inline-flex items-center gap-2 rounded-xl bg-ink px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition-all hover:-translate-y-0.5 hover:bg-teal"
+              className="group inline-flex items-center gap-2 rounded-xl bg-panel px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition-all hover:-translate-y-0.5 hover:bg-teal"
             >
               View my work
               <ArrowDown size={16} className="transition-transform group-hover:translate-y-0.5" />

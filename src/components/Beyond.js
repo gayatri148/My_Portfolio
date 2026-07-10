@@ -52,7 +52,7 @@ export default function Beyond() {
 
         {/* personal quote band */}
         <Reveal delay={0.1} className="mt-8">
-          <div className="relative overflow-hidden rounded-3xl bg-ink p-8 text-center sm:p-12">
+          <div className="relative overflow-hidden rounded-3xl bg-panel p-8 text-center sm:p-12">
             <Quote size={64} className="absolute -left-2 -top-2 text-white/5" />
             <Sparkle className="absolute right-6 top-5 w-9 animate-floaty text-white/80" />
             <Star className="absolute bottom-6 left-8 w-11 text-white/60" />

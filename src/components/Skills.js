@@ -41,7 +41,7 @@ export default function Skills() {
                       {s.items.map((item) => (
                         <span
                           key={item}
-                          className="rounded-lg border border-azure/40 bg-white/60 px-2.5 py-1 text-xs font-medium text-slatey transition-colors hover:border-teal hover:text-teal"
+                          className="rounded-lg border border-azure/40 bg-paper2 px-2.5 py-1 text-xs font-medium text-slatey transition-colors hover:border-teal hover:text-teal"
                         >
                           {item}
                         </span>
@@ -56,7 +56,7 @@ export default function Skills() {
       </div>
 
       {/* Marquee ribbon */}
-      <div className="relative mt-16 overflow-hidden border-y border-azure/30 bg-white/40 py-5">
+      <div className="relative mt-16 overflow-hidden border-y border-azure/30 bg-paper-card/60 py-5">
         <div className="marquee-track gap-8 pr-8">
           {[...skillRibbon, ...skillRibbon].map((s, i) => (
             <span

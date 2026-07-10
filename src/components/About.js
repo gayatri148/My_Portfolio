@@ -45,7 +45,7 @@ export default function About() {
             {about.highlights.map((h) => (
               <div
                 key={h.label}
-                className="group relative overflow-hidden rounded-3xl border border-azure/40 bg-white/60 p-6 text-center shadow-soft transition-all hover:-translate-y-1 hover:border-teal"
+                className="group relative overflow-hidden rounded-3xl border border-azure/40 bg-paper-card p-6 text-center shadow-soft transition-all hover:-translate-y-1 hover:border-teal"
               >
                 <div className="font-display text-4xl font-extrabold text-gradient">
                   <Counter value={h.value} />
@@ -62,7 +62,7 @@ export default function About() {
 
         {/* Education strip */}
         <Reveal delay={0.15} className="mt-6">
-          <div className="flex flex-col items-start justify-between gap-5 rounded-3xl bg-ink p-6 text-white sm:flex-row sm:items-center sm:p-8">
+          <div className="flex flex-col items-start justify-between gap-5 rounded-3xl bg-panel p-6 text-white sm:flex-row sm:items-center sm:p-8">
             <div className="flex items-start gap-4">
               <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white/10">
                 <GraduationCap size={22} className="text-azure" />
@@ -101,7 +101,7 @@ export default function About() {
 
 function InfoTile({ icon, label, value }) {
   return (
-    <div className="rounded-2xl border border-azure/40 bg-white/50 p-4">
+    <div className="rounded-2xl border border-azure/40 bg-paper2 p-4">
       <div className="mb-2 inline-grid h-9 w-9 place-items-center rounded-xl bg-mist text-teal">
         {icon}
       </div>

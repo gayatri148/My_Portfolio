@@ -72,7 +72,7 @@ export default function Contact() {
   return (
     <section id="contact" className="relative px-5 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-6xl">
-        <div className="overflow-hidden rounded-[2.5rem] bg-ink shadow-glow">
+        <div className="overflow-hidden rounded-[2.5rem] bg-panel shadow-glow">
           <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
             {/* Left: invitation */}
             <div className="bg-mesh relative p-7 sm:p-12">
@@ -93,15 +93,15 @@ export default function Contact() {
                 <div className="mt-8 space-y-3">
                   <a
                     href={`mailto:${profile.email}`}
-                    className="flex items-center gap-3 rounded-2xl bg-white/60 p-3.5 text-sm font-medium text-ink backdrop-blur transition-colors hover:bg-white"
+                    className="flex items-center gap-3 rounded-2xl bg-paper-card p-3.5 text-sm font-medium text-ink backdrop-blur transition-colors hover:bg-paper2"
                   >
                     <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-teal to-azure text-white">
                       <Mail size={18} />
                     </span>
                     {profile.email}
                   </a>
-                  <div className="flex items-center gap-3 rounded-2xl bg-white/40 p-3.5 text-sm font-medium text-ink backdrop-blur">
-                    <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/70 text-teal">
+                  <div className="flex items-center gap-3 rounded-2xl bg-paper2 p-3.5 text-sm font-medium text-ink backdrop-blur">
+                    <span className="grid h-10 w-10 place-items-center rounded-xl bg-paper-card text-teal">
                       <MapPin size={18} />
                     </span>
                     {profile.location}
@@ -231,7 +231,7 @@ function SocialBtn({ href, label, children }) {
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="grid h-11 w-11 place-items-center rounded-xl bg-white/60 text-ink transition-all hover:-translate-y-0.5 hover:bg-white"
+      className="grid h-11 w-11 place-items-center rounded-xl bg-paper-card text-ink transition-all hover:-translate-y-0.5 hover:bg-paper2"
     >
       {children}
     </a>

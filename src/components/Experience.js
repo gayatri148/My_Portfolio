@@ -69,7 +69,7 @@ export default function Experience() {
                     {job.stack.map((s) => (
                       <span
                         key={s}
-                        className="rounded-lg border border-azure/50 bg-white/60 px-2.5 py-1 text-xs font-medium text-ink"
+                        className="rounded-lg border border-azure/50 bg-paper2 px-2.5 py-1 text-xs font-medium text-ink"
                       >
                         {s}
                       </span>

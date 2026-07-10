@@ -111,7 +111,7 @@ function ProjectRow({ project, flip, index }) {
               href={project.links.github}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-teal"
+              className="inline-flex items-center gap-2 rounded-xl bg-panel px-4 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-teal"
             >
               <Github size={16} /> Code
             </a>

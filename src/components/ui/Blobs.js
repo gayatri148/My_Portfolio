@@ -13,7 +13,7 @@ export default function Blobs({ variant = "a" }) {
       { c: "bg-teal/15", s: "h-80 w-80", p: "right-[-5rem] bottom-0", d: 18 },
     ],
     b: [
-      { c: "bg-sky/40", s: "h-64 w-64", p: "right-[8%] top-[-4rem]", d: 16 },
+      { c: "bg-azure/20", s: "h-64 w-64", p: "right-[8%] top-[-4rem]", d: 16 },
       { c: "bg-azure/20", s: "h-72 w-72", p: "left-[-4rem] bottom-10", d: 20 },
     ],
   };

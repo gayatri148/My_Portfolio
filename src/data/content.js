@@ -71,7 +71,7 @@ export const projects = [
     tags: ["React 18", "Vite", "Node.js", "Express", "PostgreSQL", "Prisma", "TanStack Query"],
     image: "/projects/leadlink.png",
     links: { github: "https://github.com/gayatri148/Lead-Link-CRM", live: "https://leadlink-app.onrender.com/" },
-    accent: "from-blue to-ink",
+    accent: "from-blue to-panel",
   },
   {
     title: "DocsAI",
@@ -103,7 +103,7 @@ export const projects = [
     tags: ["React.js", "Node.js", "Express", "MongoDB", "Chart.js"],
     image: "/projects/moneymentor.png",
     links: { github: "#", live: "" },
-    accent: "from-azure to-ink",
+    accent: "from-azure to-panel",
   },
   {
     title: "Smart Traffic & Safety AI",
@@ -119,7 +119,7 @@ export const projects = [
     tags: ["React (Vite)", "Flask", "Python", "YOLOv8", "PyTorch", "OpenCV"],
     image: "/projects/traffic.png",
     links: { github: "#", live: "" },
-    accent: "from-ink to-teal",
+    accent: "from-panel to-teal",
   },
   {
     title: "Mini GitHub",

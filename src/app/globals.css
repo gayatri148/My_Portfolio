@@ -2,14 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── LIGHT THEME (default) ───────────────────────────────────── */
 :root {
-  --paper: #f4ecdd;
-  --paper-card: #fbf6ec;
-  --kraft: #caa874;
-  --ink: #1c3a5b;
-  --blue: #3f72ab;
-  --blue-deep: #2c5685;
-  --slatey: #6b6357;
+  color-scheme: light;
+
+  --c-mist: 244 236 221;    /* page background - cream paper */
+  --c-paper: 251 246 236;   /* card surface */
+  --c-paper2: 241 231 212;  /* chips / inset surface */
+  --c-panel: 28 58 91;      /* always-dark band (navy) */
+  --c-ink: 28 58 91;        /* primary text */
+  --c-slatey: 107 99 87;    /* body text */
+  --c-azure: 63 114 171;
+  --c-blue: 63 114 171;
+  --c-teal: 44 86 133;
+  --c-sky: 233 220 196;     /* light text on dark panels */
+  --c-kraft: 202 168 116;
+  --c-leaf: 110 139 74;
+
+  /* raw hex for SVG fill attributes */
+  --fill-paper: #fbf6ec;
+  --fill-kraft: #e7d2a8;
+  --fill-deep: #f1e7d4;
+
+  --shadow-soft: rgba(28, 58, 91, 0.28);
+  --shadow-strong: rgba(28, 58, 91, 0.4);
+
+  --grid-line: rgba(63, 114, 171, 0.06);
+  --grid-dot: rgba(63, 114, 171, 0.08);
+  --mesh-glow: rgba(202, 168, 116, 0.16);
+  --tape-a: rgba(231, 220, 196, 0.75);
+  --tape-b: rgba(214, 198, 165, 0.65);
+  --tape-shine: rgba(255, 255, 255, 0.5);
+  --card-border: rgba(28, 58, 91, 0.09);
+  --grain-blend: multiply;
+  --grain-opacity: 0.06;
+}
+
+/* ── DARK THEME (follows the device / OS setting) ────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --c-mist: 19 26 36;       /* page background - deep navy charcoal */
+    --c-paper: 30 40 54;      /* card surface */
+    --c-paper2: 41 55 74;     /* chips / inset surface */
+    --c-panel: 34 49 65;      /* elevated dark band */
+    --c-ink: 236 229 216;     /* primary text - warm cream */
+    --c-slatey: 163 173 185;  /* body text - muted */
+    --c-azure: 111 168 224;
+    --c-blue: 111 168 224;
+    --c-teal: 79 142 209;
+    --c-sky: 216 207 187;
+    --c-kraft: 122 100 68;
+    --c-leaf: 134 169 94;
+
+    --fill-paper: #1e2836;
+    --fill-kraft: #3b3324;
+    --fill-deep: #29374a;
+
+    --shadow-soft: rgba(0, 0, 0, 0.55);
+    --shadow-strong: rgba(0, 0, 0, 0.7);
+
+    --grid-line: rgba(111, 168, 224, 0.07);
+    --grid-dot: rgba(111, 168, 224, 0.10);
+    --mesh-glow: rgba(111, 168, 224, 0.08);
+    --tape-a: rgba(96, 84, 62, 0.55);
+    --tape-b: rgba(74, 64, 47, 0.5);
+    --tape-shine: rgba(255, 255, 255, 0.12);
+    --card-border: rgba(236, 229, 216, 0.10);
+    --grain-blend: soft-light;
+    --grain-opacity: 0.08;
+  }
 }
 
 html {
@@ -18,95 +81,99 @@ html {
 }
 
 body {
-  background: var(--paper);
-  color: var(--ink);
+  background: rgb(var(--c-mist));
+  color: rgb(var(--c-ink));
   overflow-x: hidden;
 }
 
-/* Warm paper fibre texture over everything */
+/* Paper fibre texture over everything */
 .grain::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.06;
-  mix-blend-mode: multiply;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Hero canvas - cream paper + faint graph-paper grid + warm glow */
+/* Hero canvas - paper + faint graph-paper grid + warm glow */
 .bg-mesh {
-  background-color: var(--paper);
+  background-color: rgb(var(--c-mist));
   background-image:
-    linear-gradient(rgba(63, 114, 171, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(63, 114, 171, 0.06) 1px, transparent 1px),
-    radial-gradient(at 78% 28%, rgba(202, 168, 116, 0.16) 0px, transparent 55%);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+    radial-gradient(at 78% 28%, var(--mesh-glow) 0px, transparent 55%);
   background-size: 30px 30px, 30px 30px, 100% 100%;
 }
 
 .grid-overlay {
-  background-image: radial-gradient(rgba(63, 114, 171, 0.08) 1px, transparent 1px);
+  background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
   background-size: 30px 30px;
 }
 
-/* Paper card - replaces the old glass look everywhere */
+/* Paper card */
 .glass {
-  background: var(--paper-card);
-  border: 1px solid rgba(28, 58, 91, 0.09);
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02), 0 16px 30px -18px rgba(28, 58, 91, 0.38);
+  background: rgb(var(--c-paper));
+  border: 1px solid var(--card-border);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02), 0 16px 30px -18px var(--shadow-soft);
   backdrop-filter: none;
 }
 
 .paper2 {
-  background: #f1e7d4;
+  background: rgb(var(--c-paper2));
 }
 
-/* Washi-tape strip (place over card corners) */
+/* Washi-tape strip */
 .tape {
   position: absolute;
   height: 28px;
   width: 92px;
-  background: linear-gradient(
-    180deg,
-    rgba(231, 220, 196, 0.75),
-    rgba(214, 198, 165, 0.65)
-  );
-  box-shadow: 0 4px 10px -6px rgba(28, 58, 91, 0.4);
-  border-left: 1px dashed rgba(28, 58, 91, 0.12);
-  border-right: 1px dashed rgba(28, 58, 91, 0.12);
+  background: linear-gradient(180deg, var(--tape-a), var(--tape-b));
+  box-shadow: 0 4px 10px -6px var(--shadow-soft);
+  border-left: 1px dashed var(--card-border);
+  border-right: 1px dashed var(--card-border);
 }
 .tape::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    110deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.5) 50%,
-    transparent 70%
-  );
+  background: linear-gradient(110deg, transparent 30%, var(--tape-shine) 50%, transparent 70%);
 }
 
 /* Lined notebook paper */
 .note-lines {
   background-image: repeating-linear-gradient(
-    rgba(63, 114, 171, 0.18) 0px,
-    rgba(63, 114, 171, 0.18) 1px,
+    rgb(var(--c-azure) / 0.18) 0px,
+    rgb(var(--c-azure) / 0.18) 1px,
     transparent 1px,
     transparent 22px
   );
 }
 
-/* Gradient text - navy → blue */
+/* Gradient text - adapts to theme */
 .text-gradient {
-  background: linear-gradient(115deg, var(--ink) 0%, var(--blue-deep) 45%, var(--blue) 100%);
+  background: linear-gradient(
+    115deg,
+    rgb(var(--c-ink)) 0%,
+    rgb(var(--c-teal)) 45%,
+    rgb(var(--c-azure)) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* White gel-pen doodles (for use on dark bands only) */
+/* Light gradient text - for quotes on the dark band (both themes) */
+.text-gradient-light {
+  background: linear-gradient(115deg, #f0e6d2 0%, #ffffff 55%, #a9c8ef 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* White gel-pen doodles (dark bands only) */
 .gelpen {
   color: #ffffff;
   filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.22)) drop-shadow(0 5px 12px rgba(0, 0, 0, 0.22));
@@ -119,13 +186,13 @@ body {
 @keyframes spin-slow { to { transform: rotate(360deg); } }
 .spin-slow { animation: spin-slow 50s linear infinite; }
 
-/* Custom scrollbar - warm */
+/* Custom scrollbar */
 ::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-track { background: rgb(var(--c-mist)); }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--kraft), var(--blue-deep));
+  background: linear-gradient(rgb(var(--c-kraft)), rgb(var(--c-teal)));
   border-radius: 999px;
-  border: 2px solid var(--paper);
+  border: 2px solid rgb(var(--c-mist));
 }
 
 .kicker { letter-spacing: 0.28em; text-transform: uppercase; }
@@ -138,7 +205,7 @@ body {
   bottom: -3px;
   height: 2px;
   width: 0;
-  background: linear-gradient(90deg, var(--ink), var(--blue));
+  background: linear-gradient(90deg, rgb(var(--c-ink)), rgb(var(--c-azure)));
   transition: width 0.32s ease;
 }
 .link-underline:hover::after { width: 100%; }
@@ -171,12 +238,4 @@ img, svg, video, canvas { max-width: 100%; height: auto; }
 
 @media (pointer: fine) {
   .custom-cursor-active, .custom-cursor-active * { cursor: none; }
-}
-
-/* Light gradient text - for quotes on dark bands */
-.text-gradient-light {
-  background: linear-gradient(115deg, #f0e6d2 0%, #ffffff 55%, #a9c8ef 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
